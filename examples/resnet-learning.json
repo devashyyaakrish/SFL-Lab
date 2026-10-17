@@ -1,0 +1,106 @@
+{
+  "name": "ResNet18 Digits reference learning check",
+  "hypothesis": "Gradient clipping preserves validation accuracy within one percentage point while preserving SFL architecture.",
+  "mode": "research",
+  "dataset": "digits",
+  "dataset_path": null,
+  "samples": 1200,
+  "model": "resnet18",
+  "split": [
+    2,
+    4,
+    2
+  ],
+  "clients": 3,
+  "servers": 1,
+  "rounds": 8,
+  "local_epochs": 1,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "optimizer": "adam",
+  "seeds": [
+    11
+  ],
+  "partition": "iid",
+  "dirichlet_alpha": 0.5,
+  "participation": 1.0,
+  "target_loss": 1.0,
+  "candidate": {
+    "name": "Gradient clipping",
+    "mode": "formula",
+    "hook": "H6",
+    "expression": "clip(G, C_G)",
+    "parameters": {
+      "C_G": 1.0
+    },
+    "algorithm": [],
+    "activation_clip": null,
+    "activation_noise": 0.0,
+    "gradient_clip": null,
+    "gradient_noise": 0.0,
+    "fedprox_mu": 0.0,
+    "aggregation": "weighted"
+  },
+  "privacy": {
+    "delta": 0.00001,
+    "epsilon_max": 10.0,
+    "warning_fraction": 0.8,
+    "stop_on_budget": false,
+    "threat_model": "honest_but_curious_server"
+  },
+  "network": {
+    "bandwidth_mbps": 100.0,
+    "latency_ms": 10.0,
+    "packet_loss": 0.0,
+    "jitter_ms": 0.0,
+    "retransmission": true
+  },
+  "energy": {
+    "enabled": true,
+    "frequency_ghz": 2.0,
+    "kappa": 1e-28,
+    "cycles_per_second": 2000000000.0,
+    "tx_power_w": 1.4,
+    "rx_power_w": 0.9
+  },
+  "acceptance": {
+    "max_accuracy_drop_pp": 1.0,
+    "max_communication_increase_pct": 5.0,
+    "max_runtime_increase_pct": 10.0,
+    "required_privacy_improvement_pct": 0.0
+  },
+  "evaluation": {
+    "network": true,
+    "non_iid": true,
+    "attacks": true,
+    "ablation": true,
+    "sweep": true,
+    "scalability": false,
+    "split_profile": false,
+    "attack_steps": 12,
+    "sweep_parameter": "C_G",
+    "sweep_values": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "sweep_secondary_parameter": null,
+    "sweep_secondary_values": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "search": "grid",
+    "client_counts": [
+      5,
+      10,
+      20,
+      50
+    ],
+    "server_counts": [
+      1,
+      2,
+      4
+    ]
+  }
+}

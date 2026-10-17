@@ -1,0 +1,17 @@
+.venv/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+*.pyc
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+data/*
+!data/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+*.sqlite*
+.env
+.cache/
+playwright-report/
+test-results/

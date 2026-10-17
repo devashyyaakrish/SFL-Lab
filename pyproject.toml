@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sfl-lab"
+version = "0.1.0"
+description = "A reproducible workbench for formulas and algorithms in U-shaped split federated learning"
+requires-python = ">=3.11"
+
+[project.scripts]
+sfl-lab = "sfl_lab.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["sfl_lab*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
